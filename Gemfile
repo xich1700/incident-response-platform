@@ -10,7 +10,7 @@ gem "turbo-rails"
 gem "stimulus-rails"
 gem "jbuilder"
 gem "sidekiq", "~> 7.2"
-gem "redis", "~> 5.0"
+gem "redis", "~> 6.0"
 gem "tzinfo-data", platforms: %i[windows jruby]
 gem "bootsnap", require: false
 gem "kamal", require: false
