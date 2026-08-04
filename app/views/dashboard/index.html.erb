@@ -1,0 +1,37 @@
+<h1>Incident Response Platform</h1>
+
+<p><%= link_to "Simulate a new error event", new_error_event_path, class: "button" %></p>
+
+<h2>Applications</h2>
+<ul>
+  <% @applications.each do |app| %>
+    <li><%= app.name %> (<%= app.environment %>)</li>
+  <% end %>
+</ul>
+
+<h2>Recent Error Events</h2>
+<table border="1" cellpadding="8">
+  <tr><th>Type</th><th>Severity</th><th>Application</th><th>Created</th><th></th></tr>
+  <% @recent_error_events.each do |ev| %>
+    <tr>
+      <td><%= ev.error_type %></td>
+      <td><%= ev.severity %></td>
+      <td><%= ev.application.name %></td>
+      <td><%= ev.created_at.strftime("%H:%M:%S") %></td>
+      <td><%= link_to "View", error_event_path(ev) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h2>Recent Incidents</h2>
+<table border="1" cellpadding="8">
+  <tr><th>Title</th><th>Status</th><th>Created</th><th></th></tr>
+  <% @recent_incidents.each do |inc| %>
+    <tr>
+      <td><%= inc.title %></td>
+      <td><%= inc.status %></td>
+      <td><%= inc.created_at.strftime("%H:%M:%S") %></td>
+      <td><%= link_to "View", incident_path(inc) %></td>
+    </tr>
+  <% end %>
+</table>

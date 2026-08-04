@@ -1,0 +1,35 @@
+<h1>Error Event #<%= @error_event.id %></h1>
+
+<p><strong>Type:</strong> <%= @error_event.error_type %></p>
+<p><strong>Message:</strong> <%= @error_event.error_message %></p>
+<p><strong>Severity:</strong> <%= @error_event.severity %></p>
+<p><strong>Application:</strong> <%= @error_event.application.name %></p>
+
+<h2>AI Analysis</h2>
+<% if @error_event.incident_analysis.present? %>
+  <% analysis = @error_event.incident_analysis %>
+  <p><strong>Status:</strong> <%= analysis.status %></p>
+
+  <% if analysis.completed? %>
+    <h3>Root Causes</h3>
+    <pre><%= analysis.root_causes %></pre>
+
+    <h3>Affected Components</h3>
+    <pre><%= analysis.affected_components %></pre>
+
+    <h3>Investigation Steps</h3>
+    <pre><%= analysis.investigation_steps %></pre>
+
+    <% if analysis.incident %>
+      <p><%= link_to "View linked incident →", incident_path(analysis.incident) %></p>
+    <% end %>
+  <% elsif analysis.pending? %>
+    <p>⏳ Analysis is still running... refresh this page in a few seconds.</p>
+  <% else %>
+    <p>❌ Analysis failed: <%= analysis.error_message %></p>
+  <% end %>
+<% else %>
+  <p>No analysis triggered (severity may not be high/critical).</p>
+<% end %>
+
+<p><%= link_to "← Back", root_path %></p>

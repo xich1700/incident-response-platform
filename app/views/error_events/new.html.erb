@@ -1,0 +1,32 @@
+<h1>Simulate a New Error Event</h1>
+
+<%= form_with model: @error_event, local: true do |f| %>
+  <div>
+    <%= f.label :application_id, "Application" %>
+    <%= f.collection_select :application_id, @applications, :id, :name, prompt: "Select application" %>
+  </div>
+
+  <div>
+    <%= f.label :error_type %>
+    <%= f.text_field :error_type, value: "NoMethodError" %>
+  </div>
+
+  <div>
+    <%= f.label :error_message %>
+    <%= f.text_area :error_message, value: "undefined method 'total' for nil:NilClass" %>
+  </div>
+
+  <div>
+    <%= f.label :stack_trace %>
+    <%= f.text_area :stack_trace, value: "app/models/invoice.rb:42:in 'calculate_total'" %>
+  </div>
+
+  <div>
+    <%= f.label :severity %>
+    <%= f.select :severity, ["critical", "high", "medium", "low"], selected: "critical" %>
+  </div>
+
+  <%= f.submit "Trigger Error Event" %>
+<% end %>
+
+<p><%= link_to "← Back", root_path %></p>

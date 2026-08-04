@@ -1,0 +1,13 @@
+<h1><%= @incident.title %></h1>
+<p><strong>Status:</strong> <%= @incident.status %></p>
+
+<h2>AI Analyses</h2>
+<% @incident.incident_analyses.each do |analysis| %>
+  <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+    <p><strong>Status:</strong> <%= analysis.status %></p>
+    <pre><%= analysis.root_causes %></pre>
+    <pre><%= analysis.investigation_steps %></pre>
+  </div>
+<% end %>
+
+<p><%= link_to "← Back", root_path %></p>
