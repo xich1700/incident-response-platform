@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432
+
+development:
+  <<: *default
+  database: incident_response_platform_development
+
+test:
+  <<: *default
+  database: incident_response_platform_test
+
+production:
+  <<: *default
+  database: incident_response_platform_production
+  username: incident_response_platform
+  password: <%= ENV["INCIDENT_RESPONSE_PLATFORM_DATABASE_PASSWORD"] %>
