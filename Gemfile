@@ -4,7 +4,7 @@ ruby "3.4.10"
 
 gem "rails", "~> 8.1.3"
 gem "propshaft"
-gem "pg", "~> 1.5"
+gem "pg", "~> 1.7"
 gem "puma", ">= 6.0"
 gem "turbo-rails"
 gem "stimulus-rails"
